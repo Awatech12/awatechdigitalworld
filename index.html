@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Awatech Online Tutoring</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- Floating Social Icons -->
+<div class="social-floating">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https://your-website.com" target="_blank" aria-label="Share on Facebook"><i class="fab fa-facebook-f"></i></a>
+  <a href="https://wa.me/?text=Check%20out%20this%20Math%20Tutoring%20site:%20https://your-website.com" target="_blank" aria-label="Share on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  <a href="https://www.instagram.com/" target="_blank" aria-label="Visit Instagram"><i class="fab fa-instagram"></i></a>
+</div>
+
+<!-- Navbar -->
+<nav>
+  <div class="logo">AwaMaster</div>
+  <div class="nav-controls">
+    <button id="theme-toggle" class="theme-toggle">🌙 Dark</button>
+    <button id="menu-toggle" class="menu-toggle">☰</button>
+  </div>
+  <ul id="nav-menu">
+    <li><a href="#about">About</a></li>
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#booking">Book Session</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero fade-section">
+  <h1>Welcome to Awatech Online Tutoring</h1>
+  <p>Learn Mathematics with expert guidance. Personalized lessons for all levels!</p>
+  <button class="cta" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">Book a Session</button>
+</section>
+
+<!-- About Section -->
+<section class="about fade-section" id="about">
+  <h2>About Me</h2>
+  <p>Hello! I am a professional Mathematics instructor with over 10 years of experience. I focus on making math simple, engaging, and fun for every learner.</p>
+</section>
+
+<!-- Courses Section -->
+<section class="courses fade-section" id="courses">
+  <h2>Courses Offered</h2>
+  <div class="courses-container">
+    <div class="course">
+      <h3>Algebra</h3>
+      <p>Master algebraic concepts with step-by-step guidance.</p>
+      <video controls>
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="course">
+      <h3>Calculus</h3>
+      <p>Learn derivatives, integrals, limits, and more.</p>
+      <video controls>
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="course">
+      <h3>Geometry</h3>
+      <p>Understand shapes, theorems, and proofs.</p>
+      <video controls>
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<!-- Booking Section -->
+<section class="booking fade-section" id="booking">
+  <h2>Book a Live Session</h2>
+  <form>
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <select name="course" required>
+      <option value="">Select Course</option>
+      <option value="Algebra">Algebra</option>
+      <option value="Calculus">Calculus</option>
+      <option value="Geometry">Geometry</option>
+    </select>
+    <input type="date" name="date" required>
+    <input type="time" name="time" required>
+    <button type="submit">Book Now</button>
+  </form>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials fade-section" id="testimonials">
+  <h2>Testimonials</h2>
+  <div class="testimonials-container">
+    <div class="testimonial">
+      <p>"AwaMaster helped me improve my grades significantly. Lessons are easy to understand!"</p>
+      <h4>- Adesola Fatimoh</h4>
+    </div>
+    <div class="testimonial">
+      <p>"Engaging and patient tutor. Highly recommended for all students struggling with math."</p>
+      <h4>- Olaide Adigun</h4>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact fade-section" id="contact">
+  <h2>Contact Me</h2>
+  <form>
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+
+<!-- Footer -->
+<footer class="fade-section">
+  <p>&copy; 2025 AwaMaster. All Rights Reserved.</p>
+</footer>
+
+<!-- Scripts -->
+<script>
+  // Theme toggle
+  (function(){
+    const btn = document.getElementById('theme-toggle');
+    function applyTheme(mode){
+      if(mode==='dark'){
+        document.documentElement.classList.add('dark-mode');
+        btn.innerText='☀️ Light';
+      } else {
+        document.documentElement.classList.remove('dark-mode');
+        btn.innerText='🌙 Dark';
+      }
+    }
+    try{
+      const saved = localStorage.getItem('theme');
+      if(saved) applyTheme(saved);
+      else applyTheme(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+    } catch(e){ applyTheme('light'); }
+
+    btn.addEventListener('click', ()=>{
+      const next = document.documentElement.classList.contains('dark-mode')?'light':'dark';
+      try{ localStorage.setItem('theme', next); }catch(e){}
+      applyTheme(next);
+    });
+  })();
+
+  // Mobile Navbar Toggle
+  (function(){
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('nav-menu');
+
+    toggle.addEventListener('click', () => {
+      const isOpen = menu.classList.contains('open');
+      if(isOpen){
+        menu.style.maxHeight='0';
+        menu.classList.remove('open');
+      } else {
+        menu.style.maxHeight=menu.scrollHeight+'px';
+        menu.classList.add('open');
+      }
+    });
+
+    // Close menu when clicking a link
+    document.querySelectorAll('#nav-menu a').forEach(link=>{
+      link.addEventListener('click', ()=>{
+        if(window.innerWidth<=768){
+          menu.style.maxHeight='0';
+          menu.classList.remove('open');
+        }
+      });
+    });
+
+    // Reset menu on resize
+    window.addEventListener('resize', ()=>{
+      if(window.innerWidth>768){
+        menu.style.maxHeight='';
+        menu.classList.remove('open');
+      }
+    });
+  })();
+
+  // Scroll + Fade
+  (function(){
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold:0.18 });
+
+    document.querySelectorAll('.fade-section').forEach(el=>observer.observe(el));
+  })();
+</script>
+
+</body>
+</html>
